@@ -74,17 +74,23 @@ func (g *Game) Draw(screen *ebiten.Image) {
 
 	options := ebiten.DrawImageOptions{}
 
+	// loop over layers
 	for _, layer := range g.tilemapJSON.Layers {
+		// loop over tiles in layer
 		for index, id := range layer.Data {
+			// calculate position of tile
 			x := index % layer.Width
 			y := index / layer.Width
 
+			// convert position into pixels
 			x *= 16
 			y *= 16
 
+			// find which tile to render from the tilesheet
 			srcX := (id - 1) % 22
 			srcY := (id - 1) / 22
 
+			// convert tile position from tilesheet into pixels
 			srcX *= 16
 			srcY *= 16
 
